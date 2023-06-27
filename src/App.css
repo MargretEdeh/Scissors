@@ -1,4 +1,18 @@
-.App {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* SlantedRectangle.css */
+
+.slant{
+  width: 200px;
+  height: 200px;
+  background-color: #e7e0e0;
+  transform: skewX(-50deg) rotateY(60deg);
+}
+
+/* .App {
   text-align: center;
 }
 
@@ -14,7 +28,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color:  #e9e6d2;
+  filter: blur(50%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +50,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
