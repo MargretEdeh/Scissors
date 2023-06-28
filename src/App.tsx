@@ -5,6 +5,7 @@ import { Create } from './Pages/Create';
 import { Home } from './Pages/Home';
 import { Dashboard } from './Pages/Dashboard';
 import { Qrcode } from './Pages/Qrcode';
+import { LinkList } from './Pages/LinkList';
 //  import { AuthProvider } from './Context/ContextProvider';
 // import { AuthContext } from './Context/ContextProvider';
  import { Signup } from './Pages/Signup';
@@ -28,7 +29,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>}>
           <Route path="/dashboard/create" element={<Create/>}/>
           <Route path="/dashboard/qrcode" element={<Qrcode/>}/>
-          
+          <Route path="/dashboard/links" element={<LinkList/>}/>
         </Route>
       </Routes>
 

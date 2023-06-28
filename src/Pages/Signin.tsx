@@ -12,10 +12,34 @@ export function Signin (props: ISigninProps) {
     const { setAccessToken, accessToken } = React.useContext(AuthContext);
     const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+
   const navigate = useNavigate();
   
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+      // Clear previous errors
+      setErrors({});
+
+      // Perform form validation
+      let formIsValid = true;
+      const newErrors: { email?: string; password?: string } = {};
+  
+      if (!email.trim()) {
+        newErrors.email = 'Email is required';
+        formIsValid = false;
+      }
+  
+      if (!password.trim()) {
+        newErrors.password = 'Password is required';
+        formIsValid = false;
+      }
+  
+      if (!formIsValid) {
+        setErrors(newErrors);
+        return;
+      }
 
     const bodyParams = new URLSearchParams();
     bodyParams.append('grant_type', 'password');
@@ -39,7 +63,7 @@ export function Signin (props: ISigninProps) {
         console.log('Login successful');
         const data = await response.json();
         setAccessToken(data.access_token);
-        navigate('/');
+        navigate('/dashboard/links');
         console.log(data);
         console.log(accessToken);
 
@@ -94,7 +118,9 @@ export function Signin (props: ISigninProps) {
                   <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center' >
                   <div className='flex gap-5 flex-col'>
           <input value={email} onChange={(e)=> setEmail(e.target.value)}  className='flex border-2 border-primary px-5 py-3 rounded-md  w-[450px] ' type='email'  placeholder='Email' />
+          {errors.email && <p className="text-red-500">{errors.email}</p>}
           <input value={password} onChange={(e)=> setPassword(e.target.value)}  className='flex border-2 border-primary px-5 py-3 rounded-md  w-[450px] ' type='password'  placeholder='Password' />
+          {errors.password && <p className="text-red-500">{errors.password}</p>}
           <p className='text-gray-500 -mt-5'>6 or more characters, one number, one uppercase & one lower case. </p>
           </div>
           <Button children={'Sign in with Email'} color={true} className='my-5 w-10/12' />

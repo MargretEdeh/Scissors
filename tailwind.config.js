@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        primary : "#0065FE"
+        primary : "#0065FE",
+        modal : "rgba(0, 0, 0, 0.5)"
       },
       backgroundImage: {
         'pattern': "url('./images/background.svg')",

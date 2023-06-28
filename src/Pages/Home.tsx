@@ -18,13 +18,13 @@ export interface IHomeProps {
 }
 
 export function Home (props: IHomeProps) {
-  const {accessToken} = React.useContext(AuthContext);
-  const navigate = useNavigate();
-  React.useEffect(() => {
-    if(!accessToken){
-      navigate('/signin');
-    }
-  }, []);
+  // const {accessToken} = React.useContext(AuthContext);
+  // const navigate = useNavigate();
+  // React.useEffect(() => {
+  //   if(!accessToken){
+  //     navigate('/signin');
+  //   }
+  // }, []);
   return (
     <div>
         <NavBar/>

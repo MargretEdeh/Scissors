@@ -1,56 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // import axios from 'axios';
-import { AuthContext } from '../Context/ContextProvider';
+import { AuthContext } from "../Context/ContextProvider";
+import { IoCheckmarkDoneOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import { Top } from "../Component/Top";
 
 export interface ICreateProps {}
 
 export function Create(props: ICreateProps) {
-  const {accessToken}= React.useContext(AuthContext)
-  const [url, setUrl] = useState('');
-  const [title, setTitle] = useState('');
-  const [alias, setAlias] = useState('');
+  const { accessToken } = React.useContext(AuthContext);
+  const [url, setUrl] = useState("");
+  const [title, setTitle] = useState("");
+  const [alias, setAlias] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [shortenedUrl, setShortenedUrl] = useState('');
+  const [shortenedUrl, setShortenedUrl] = useState("");
+  const [customUrl, setCustomUrl] = useState("");
+  const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
+
+
+  const closeModal = () => {
+    setSuccess(false);
+    navigate("/dashboard/links");
+
+  }
 
   const shortenUrl = async (e: React.FormEvent) => {
-  e.preventDefault(); // Prevent the default form submission behavior
+    e.preventDefault(); // Prevent the default form submission behavior
 
-  setIsLoading(true);
-console.log(accessToken);
-console.log(url);
-console.log(alias);
+    setIsLoading(true);
+    console.log(accessToken);
+    console.log(url);
+    console.log(alias);
 
-try {
-  const response = await fetch('https://scissors-v0r0.onrender.com/api/v1/url/shorten', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${accessToken}`,
-    },
-    body: JSON.stringify({
-      long_url: url,
-      custom_url: alias,
-    }),
-  });
+    try {
+      const response = await fetch(
+        "https://scissors-v0r0.onrender.com/api/v1/url/shorten",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            long_url: url,
+            custom_url: alias,
+          }),
+        }
+      );
 
-  if (response.ok) {
-    const data = await response.json();
-    setShortenedUrl(data.shortUrl);
-    console.log(data);
-  } else {
-    throw new Error('Failed to shorten URL');
-  }
-} catch (error) {
-  console.error('Failed to shorten URL:', error);
-}
+      if (response.ok) {
+        const data = await response.json();
+        setShortenedUrl(data.short_url);
+        setCustomUrl(data.custom_url);
+        setSuccess(true);
+        console.log(data.short_url);
+      } else {
+        throw new Error("Failed to shorten URL");
+      }
+    } catch (error) {
+      console.error("Failed to shorten URL:", error);
+    }
 
-setIsLoading(false);
-
-};
+    setIsLoading(false);
+  };
 
   return (
     <div>
-      <form onSubmit={shortenUrl} className="py-5 w-4/5 mx-auto my-32 md:px-10 gap-10 flex flex-col">
+      <Top/>
+      <form
+        onSubmit={shortenUrl}
+        className="py-5 w-4/5 mx-auto my-32 md:px-10 gap-10 flex flex-col"
+      >
         <h1 className="text-3xl text-primary font-semibold">Create New Link</h1>
         <input
           className="placeholder:text-primary placeholder:text-sm border px-5 py-3 rounded-xl border-primary"
@@ -89,10 +110,9 @@ setIsLoading(false);
         </div>
         <button
           className="bg-primary px-5 py-2 text-white rounded-xl"
-          
           disabled={isLoading}
         >
-          {isLoading ? 'Trimming...' : 'Trim URL'}
+          {isLoading ? "Trimming..." : "Trim URL"}
         </button>
         {shortenedUrl && (
           <div className="mt-4">
@@ -100,6 +120,37 @@ setIsLoading(false);
           </div>
         )}
       </form>
+      {success && (
+        <div className="flex flex-col items-center fixed top-0 left-0 w-full h-full bg-modal ">
+          <div className="bg-white rounded-xl flex flex-col items-center px-20 py-20  p-10 my-32">
+            <h2 className="text-3xl font-semibold text-primary ">
+              URL Trimmed Successfully!
+            </h2>
+            <IoCheckmarkDoneOutline className="text-9xl text-primary" />
+            <p className="font-semibold">
+              Shortened URL   :
+              <a className="text-primary"
+                href={`https://scissors-v0r0.onrender.com/${shortenedUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                https://scissors-v0r0.onrender.com/{shortenedUrl}
+              </a>
+            </p>
+            <p className="font-semibold">
+              Custom URL      :
+              <a className="text-primary"
+                href={`https://scissors-v0r0.onrender.com/${customUrl}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                https://scissors-v0r0.onrender.com/{customUrl}
+              </a>
+            </p>
+            <button className="px-5 text-white my-10 py-3 rounded-lg bg-primary shadow" onClick={closeModal}>View Your Trimmed Links </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
