@@ -95,41 +95,41 @@ export function LinkList(props: ILinkListProps) {
   return (
     <div>
       <Top/>
-      <div className="flex flex-col items-center gap-3">
-        <h2 className="text-3xl font-semibold  mt-10 text-primary">
+      <div className="flex flex-col px-2 lg:items-center gap-3">
+        <h2 className="md:text-3xl text-xl font-semibold  mt-10 text-primary">
           Previously Created Links{" "}
         </h2>
         {/* <RiLinksFill className="text-5xl text-red-700" /> */}
-      <p> <b className="text-red-700"> Note</b> : The main domain is " https://scissors-v0r0.onrender.com/"</p>
+      <p className="text-xs"> <b className="text-red-700 text-xs "> Note</b> : The main domain is " https://scissors-v0r0.onrender.com/"</p>
 
       </div>
       <hr/>
-      <h1 className="text-lg my-10">Hello<b className="text-primary text-xl"> {currentUser} </b>,  your Links are displayed below </h1>
+      <h1 className="md:text-lg px-2 my-10">Hello<b className="text-primary md:text-xl"> {currentUser} </b>,  your Links are displayed below </h1>
 
-      <ul className="grid grid-cols-3 gap-5   " >
+      <ul className="md:grid lg:grid-cols-3 flex flex-col gap-5   " >
         {links.map((link: any) => (
-            <div className="flex flex-col hover:bg-blue-50 shadow shadow-blue-100 rounded-lg border py-5 px-4 gap-5">
+            <div className="flex w-60 flex-col lg:w-full hover:bg-blue-50 shadow shadow-blue-100 rounded-lg border py-5 px-4 gap-3 md:gap-5">
            <div className="flex items-center gap-2">  
-            <h1 className="  font-semibold">Short Url: </h1>   
+            <h1 className="  font-semibold text-xs md:text-base">Short Url: </h1>   
          <li className="shadow py-2 px-5 rounded-xl cursor-pointer" key={link.id}>
                 <a
                href={'https://scissors-v0r0.onrender.com/' + link.short_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary text-lg"
+                className="text-primary text-xs md:text-sm lg:text-lg"
                 >
                 {link.short_url}
                 </a>
             </li>
             </div>
             <div className="flex items-center gap-2">
-            <h1 className="font-semibold ">Custom Url: </h1>
+            <h1 className="font-semibold text-xs md:text-base ">Custom Url: </h1>
             <li className="bg-primary px-5 py-2  rounded-xl cursor-pointer " key={link.id}>
                 <a
                 href={'https://scissors-v0r0.onrender.com/' +  link.custom_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white text-lg"
+                className="text-white md:text-lg"
                 >
                 {link.custom_url}
                 </a>            </li>

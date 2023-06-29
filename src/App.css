@@ -12,6 +12,18 @@
   transform: skewX(-50deg) rotateY(60deg);
 }
 
+.qr-code-container {
+  max-width: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.qr-code-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
 /* .App {
   text-align: center;
 }

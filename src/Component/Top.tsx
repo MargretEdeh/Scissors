@@ -29,7 +29,7 @@ const handleLogout = () => {
         <div onClick={handleLogout} className='flex items-center gap-2'>
             <MdLogout className='md:text-2xl  text-red-700'/> 
             <Button className='hidden md:flex' children={"Logout"} color={true}/>
-            <button className='bg-primary px-2 rounded-md py-1'>LogOut </button>
+            <button className='bg-primary text-white px-2 rounded-md py-1'>LogOut </button>
             
         </div>
       

@@ -28,17 +28,17 @@ export function Qrcode(props: IQrcodeProps) {
   return (
     <div>
       <Top/>
-      <div className='flex gap-4 items-center my-20'>
-        <h1 className='text-3xl font-semibold text-primary'>
+      <div className='flex flex-col  gap-4 items-center my-5 px-2 md:my-20'>
+        <h1 className='md:text-3xl text-sm text-center font-semibold text-primary'>
           Enhance user experience by enabling seamless access through a quick scan.
         </h1>
-        <BsQrCode className='text-5xl text-primary' />
+        <BsQrCode className='md:text-5xl text-3xl text-primary' />
       </div>
-      <div className='flex '>
+      <div className='flex px-2 '>
         <form  onSubmit={handleSubmit}>
           <p className='text-xs'>Enter Your Link</p>
           <input
-            className='border border-primary rounded-md w-[400px]  py-3 px-3'
+            className='border border-primary rounded-md lg:w-[400px]  py-3 px-3'
             type='text'
             placeholder='enter link'
             value={url}
@@ -50,12 +50,11 @@ export function Qrcode(props: IQrcodeProps) {
         </form>
       </div>
 
-        <div className='grid grid-cols-4 my-10 gap-10'>
+        <div className='md:grid  items-center lg:grid-cols-6 my-10 gap-10'>
           {qrCodes.map((qrCode, index) => (
-            <div key={index} className='mb-4'>
+            <div key={index} className='mb-4 w-full px-2'>
               <QRCode
                 id={`qrCodeId-${index}`}
-                size={300}
                 value={qrCode}
                 bgColor='white'
                 fgColor='blue'
