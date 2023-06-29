@@ -108,7 +108,7 @@ export function LinkList(props: ILinkListProps) {
 
       <ul className="md:grid lg:grid-cols-3 flex flex-col gap-5   " >
         {links.map((link: any) => (
-            <div className="flex w-60 flex-col lg:w-full hover:bg-blue-50 shadow shadow-blue-100 rounded-lg border py-5 px-4 gap-3 md:gap-5">
+            <div className="flex  flex-col lg:w-full hover:bg-blue-50 shadow shadow-blue-100 rounded-lg border py-5 px-4 gap-3 md:gap-5">
            <div className="flex items-center gap-2">  
             <h1 className="  font-semibold text-xs md:text-base">Short Url: </h1>   
          <li className="shadow py-2 px-5 rounded-xl cursor-pointer" key={link.id}>
