@@ -135,7 +135,7 @@ export function LinkList(props: ILinkListProps) {
                 </a>            </li>
             <IoTrashBin
             onClick={() => deleteLink( link.short_url)}
-             className="text-3xl text-red-700  ml-44 cursor-pointer" />
+             className="text-3xl text-red-700  lg:ml-32 cursor-pointer" />
 
 
             </div>
