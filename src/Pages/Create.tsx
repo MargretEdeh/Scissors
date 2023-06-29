@@ -74,21 +74,21 @@ export function Create(props: ICreateProps) {
       >
         <h1 className="text-3xl text-primary font-semibold">Create New Link</h1>
         <input
-          className="placeholder:text-primary placeholder:text-sm border md:px-5 md:py-3 px-3 py-2 rounded-xl border-primary"
+          className="placeholder:text-primary placeholder:text-sm border my-3 md:px-5 md:py-3 px-3 py-2 rounded-xl border-primary"
           type="text"
           placeholder="paste URL here..."
           value={url}
           onChange={(e) => setUrl(e.target.value)}
         />
         <input
-          className="placeholder:text-primary placeholder:text-sm border md:px-5 md:py-3 px-3 py-2 rounded-xl border-primary"
+          className="placeholder:text-primary my-3 placeholder:text-sm border md:px-5 md:py-3 px-3 py-2 rounded-xl border-primary"
           type="text"
           placeholder="Title (Optional*)"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
 
-        <div className="flex gap-2">
+        <div className="flex my-3 gap-2">
           <select className="border w-4/5 text-sm text-primary border-primary hover:bg-primary hover:text-white bg-white md:px-5 md:py-3 px-3 py-2 rounded-xl">
             <option className="hover:text-white hover:bg-primary" value="paid">
               Choose Domain
@@ -101,7 +101,7 @@ export function Create(props: ICreateProps) {
             </option>
           </select>
           <input
-            className="placeholder:text-primary w-full placeholder:text-sm border md:px-4 md:py-3 px-3 py-2 rounded-xl border-primary"
+            className="placeholder:text-primary my-3 w-full placeholder:text-sm border md:px-4 md:py-3 px-3 py-2 rounded-xl border-primary"
             type="text"
             placeholder="Type Alias here"
             value={alias}
