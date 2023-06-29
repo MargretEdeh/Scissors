@@ -13,24 +13,21 @@ export function LinkList(props: ILinkListProps) {
   const [currentUser, setCurrentUser] = useState("");
 
   useEffect(() => {
-    fetchLinks();
+    fetchCurrentUser ();
   }, []);
-
   const fetchLinks = async () => {
     try {
       const response = await fetch(
-        "https://scissors-v0r0.onrender.com/api/v1/url/list-all",
+        "https://scissors-v0r0.onrender.com/api/v1/url/list-loggedin-user-url",
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         }
       );
-
+  
       if (response.ok) {
         const data = await response.json();
-        setCurrentUser(data[0].user);
-        console.log(data);
         setLinks(data);
       } else {
         throw new Error("Failed to fetch links");
@@ -39,6 +36,31 @@ export function LinkList(props: ILinkListProps) {
       console.error("Failed to fetch links:", error);
     }
   };
+  
+
+  const fetchCurrentUser = async () => {
+    try {
+      const response = await fetch("https://scissors-v0r0.onrender.com/api/v1/users/me", {
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+  
+      if (response.ok) {
+        const userData = await response.json();
+        setCurrentUser(userData.name);
+        fetchLinks();
+        // console.log();
+        
+      } else {
+        throw new Error("Failed to fetch currently logged-in user");
+      }
+    } catch (error) {
+      console.error("Failed to fetch currently logged-in user:", error);
+    }
+  };
+  
 
   const deleteLink = async (shortUrl: string) => {
     try {
