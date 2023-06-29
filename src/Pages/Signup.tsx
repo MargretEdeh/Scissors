@@ -1,16 +1,24 @@
 import * as React from "react";
 import { useState, FormEvent } from "react";
 import { Button } from "../Component/Button";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FooterSection } from "../Component/FooterSection";
 
 export interface ISignupProps {}
 
 export function Signup(props: ISignupProps) {
+  const navigate= useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    username: "",
+    retypePassword: "",
+  });
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -24,6 +32,8 @@ export function Signup(props: ISignupProps) {
     };
 
     try {
+    setIsLoading(true);
+      setErrors({ email: "", password: "", username: "", retypePassword: "" });
       const response = await fetch(
         "https://scissors-v0r0.onrender.com/api/v1/users/register",
         {
@@ -38,12 +48,17 @@ export function Signup(props: ISignupProps) {
 
       if (response.ok) {
         // Registration successful
-        // Redirect or perform any other necessary actions
+        setIsLoading(false);
+        navigate("/dashboard/create")
+
         console.log("Registration successful");
-      } else {
-        // Registration failed
-        // Handle the error accordingly
-        console.error("Registration failed");
+      }  {
+        const data = await response.json();
+        if (data.errors) {
+          setErrors(data.errors);
+        } else {
+          console.error("Registration failed");
+        }
       }
     } catch (error) {
       // Handle any network or server errors
@@ -66,33 +81,38 @@ export function Signup(props: ISignupProps) {
           <div className="h-[1px] w-full bg-neutral-400"></div>
         </div>
       </div>
-      <form onSubmit={handleSubmit} className="flex flex-col">
+      <form onSubmit={handleSubmit} className="flex flex-col w-full md:w-auto px-5 md:mx-0 ">
         <div className="flex gap-5 flex-col">
           <input
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="flex border-2 border-primary px-5 py-3 rounded-md  w-[450px] "
+            className="flex border-2 border-primary px-5 py-3 rounded-md  md:w-[450px] "
             type="text"
             placeholder="username"
           />
+          {errors.username && (
+            <p className="text-red-500" onClick={() => setErrors((prevErrors) => ({ ...prevErrors, username: "" }))}>
+              {errors.username}
+            </p>
+          )}
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="flex border-2 border-primary px-5 py-3 rounded-md  w-[450px] "
+            className="flex border-2 border-primary px-5 py-3 rounded-md  md:w-[450px] "
             type="email"
             placeholder="Email"
           />
           <input
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="flex border-2 border-primary px-5 py-3 rounded-md  w-[450px] "
+            className="flex border-2 border-primary px-5 py-3 rounded-md  md:w-[450px] "
             type="password"
             placeholder="Password"
           />
           <input
             value={retypePassword}
             onChange={(e) => setRetypePassword(e.target.value)}
-            className="flex border-2 border-primary px-5 py-3 rounded-md  w-[450px] "
+            className="flex border-2 border-primary px-5 py-3 rounded-md  md:w-[450px] "
             type="password"
             placeholder="Retype Password"
           />
@@ -100,12 +120,12 @@ export function Signup(props: ISignupProps) {
             6 or more characters, one number, one uppercase & one lower case.{" "}
           </p>
         </div>
-        <Button children={"Sign up with Email"} color={true} className="my-5" />
+        <Button children={isLoading ? "Signing up..." : "Sign up with Email"} color={true} className="my-5" />
       </form>
       <div className="mx-4 max-w-[600px] md:mx-8">
         <div className="flex justify-center text-neutral-500 my-4">
           Already have an account?{" "}
-          <NavLink className="pl-1.5 underline text-primary" to="/login">
+          <NavLink className="pl-1.5 underline text-primary" to="/signin">
             {" "}
             Log in
           </NavLink>

@@ -115,15 +115,15 @@ export function Signin (props: ISigninProps) {
                     </div>
                     <div className="h-[1px] w-full bg-neutral-400"></div>
                   </div>
-                  <form onSubmit={handleSubmit} className='flex flex-col items-center justify-center' >
+                  <form onSubmit={handleSubmit} className='flex flex-col md:items-center md:justify-center' >
                   <div className='flex gap-5 flex-col'>
-          <input value={email} onChange={(e)=> setEmail(e.target.value)}  className='flex border-2 border-primary px-5 py-3 rounded-md  w-[450px] ' type='email'  placeholder='Email' />
+          <input value={email} onChange={(e)=> setEmail(e.target.value)}  className='flex border-2 border-primary px-5 py-3 rounded-md  md:w-[450px] ' type='email'  placeholder='Email' />
           {errors.email && <p className="text-red-500">{errors.email}</p>}
-          <input value={password} onChange={(e)=> setPassword(e.target.value)}  className='flex border-2 border-primary px-5 py-3 rounded-md  w-[450px] ' type='password'  placeholder='Password' />
+          <input value={password} onChange={(e)=> setPassword(e.target.value)}  className='flex border-2 border-primary px-5 py-3 rounded-md  md:w-[450px] ' type='password'  placeholder='Password' />
           {errors.password && <p className="text-red-500">{errors.password}</p>}
           <p className='text-gray-500 -mt-5'>6 or more characters, one number, one uppercase & one lower case. </p>
           </div>
-          <Button children={'Sign in with Email'} color={true} className='my-5 w-10/12' />
+          <Button children={'Sign in with Email'} color={true} className='my-5 md:w-10/12 ' />
 
                   
                   </form>
@@ -133,7 +133,7 @@ export function Signin (props: ISigninProps) {
                     Don&apos;t have an account?{' '}
                     <NavLink
                       className="pl-1.5 underline text-primary"
-                      to="/sign-up"
+                      to="/signup"
                     >
                       {' '}
                       Sign Up

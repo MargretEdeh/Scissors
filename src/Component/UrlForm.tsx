@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 // import background from '../images/background.svg'
 import { AuthContext } from "../Context/ContextProvider";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { FaRegSadCry } from "react-icons/fa";
 
 export interface IUrlFormProps {}
@@ -68,9 +68,9 @@ export function UrlForm(props: IUrlFormProps) {
 
   };
   return (
-    <div className="bg-pattern w-full py-20 px-10 md:px-0bg-cover bg-center  flex mx-auto items-center justify-center   ">
-      <div className="bg-white rounded-xl md:w-[30%] py-5 ">
-        <form onSubmit={shortenUrl} className="py-5 md:px-10 gap-5 flex flex-col">
+    <div className="bg-pattern  w-full py-20 px-10 md:px-0 bg-cover bg-center  flex md:mx-auto items-center justify-center   ">
+      <div className="bg-white rounded-xl  md:w-[30%] py-5 ">
+        <form onSubmit={shortenUrl} className="py-5 px-3 md:px-10 gap-5 flex flex-col">
           <input
             value={url}
             onChange={(e) => setUrl(e.target.value)}
@@ -78,7 +78,7 @@ export function UrlForm(props: IUrlFormProps) {
             type="text"
             placeholder="paste URL here..."
           />
-          <div className="flex gap-2">
+          <div className="flex md:flex-row flex-col gap-2">
             <select className="border text-primary border-primary bg-white px-5 py-2 rounded-xl">
               {" "}
               Choose Domain
@@ -116,13 +116,13 @@ export function UrlForm(props: IUrlFormProps) {
             <FaRegSadCry className="text-9xl text-primary" />
             <p className="text-primary px-6">
               To use the link shortening functionality, <br/> please&nbsp; 
-              <a href="/signin" className="text-primary underline">
+              <NavLink to="/signin" className="text-primary underline">
                <b>sign in</b>
-              </a>
+              </NavLink>
               &nbsp;or&nbsp;
-              <a href="/signup" className="text-primary underline">
+              <NavLink to="/signup" className="text-primary underline">
                 <b>sign up</b>
-              </a>
+              </NavLink>
               &nbsp;to create an account.
             </p>
           </div>
