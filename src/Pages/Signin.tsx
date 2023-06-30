@@ -13,6 +13,8 @@ export function Signin (props: ISigninProps) {
     const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
+  const [isLoading, setIsLoading] = useState(false);
+
 
   const navigate = useNavigate();
   
@@ -50,6 +52,8 @@ export function Signin (props: ISigninProps) {
     bodyParams.append('client_secret', 'client_secret');
 
     try {
+      
+    setIsLoading(true);
       const response = await fetch('https://scissors-v0r0.onrender.com/api/v1/users/login', {
         method: 'POST',
         headers: {
@@ -63,6 +67,7 @@ export function Signin (props: ISigninProps) {
         console.log('Login successful');
         const data = await response.json();
         setAccessToken(data.access_token);
+        setIsLoading(false);
         navigate('/dashboard/links');
         console.log(data);
         console.log(accessToken);
@@ -123,7 +128,7 @@ export function Signin (props: ISigninProps) {
           {errors.password && <p className="text-red-500">{errors.password}</p>}
           <p className='text-gray-500 -mt-5'>6 or more characters, one number, one uppercase & one lower case. </p>
           </div>
-          <Button children={'Sign in with Email'} color={true} className='my-5 md:w-10/12 ' />
+          <Button children={isLoading ? "Signing in..." : "Sign in with Email"} color={true} className='my-5 md:w-10/12 ' />
 
                   
                   </form>
