@@ -22,7 +22,7 @@ export default function HeroSection(props: IHeroSectionProps) {
           Solution
         </h1>
         <img src={stroke} alt="Stroke" />
-        <div className="font-normal text-center w-[65%]">
+        <div className="font-normal text-center px-5 md:px-0 md:w-[65%]">
         <p>
           {" "}
           Personalize your shortened URLs to align with your brand identity.
