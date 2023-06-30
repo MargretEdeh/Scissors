@@ -12,8 +12,8 @@ export interface IHeroSectionProps {}
 export default function HeroSection(props: IHeroSectionProps) {
   return (
     <div className="mx-auto flex items-center justify-center">
-      <div className=" my-20 md:w-[60%] w-full px-5 font-semibold  items-center justify-center gap-5 flex flex-col">
-        <h1 className="px-2 text-4xl  md:text-5xl ">
+      <div className=" my-20 md:w-[70%] w-full px-5 font-semibold  items-center justify-center gap-5 flex flex-col">
+        <h1 className="px-2  md:px-0 text-3xl  md:text-5xl ">
           Optimize Your Online Experience with Our{" "}
         </h1>
         <h1 className="px-2 text-4xl md:text-5xl">
@@ -31,7 +31,7 @@ export default function HeroSection(props: IHeroSectionProps) {
         </p>
         </div>
         <div className="flex gap-5 my-4 font-normal">
-             <NavLink className="rounded-3xl  px-7 py-3 bg-primary text-white" to='/sign up'> Sign up </NavLink>
+             <NavLink className="rounded-3xl  px-7 py-3 bg-primary text-white" to='/signup'> Sign up </NavLink>
             <button className="text-primary">Learn more</button>
         </div>
         <div className="relative py-10  md:w-1/2">

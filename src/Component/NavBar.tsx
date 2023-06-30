@@ -32,8 +32,8 @@ export function NavBar (props: INavBarProps) {
             <NavLink to="#" className="hover:text-primary "> FAQs</NavLink>
 
         </div>
-        <div className='md:flex hidden   gap-4'>
-            <button className='text-primary'> Log in</button>
+        <div className='md:flex hidden  items-center   gap-4'>
+        <NavLink to="/signin"> <button className='text-primary   '> Log in </button></NavLink>
             <Button> Try for free</Button>            
         </div>
         <Icon onClick={toggleMenu} className='md:hidden    text-3xl' icon="ic:outline-menu" color="#0065fe" />
@@ -46,7 +46,7 @@ export function NavBar (props: INavBarProps) {
           <NavLink to="#" className="block hover:text-primary">Pricing</NavLink>
           <NavLink to="#" className="block hover:text-primary">Analytics</NavLink>
           <NavLink to="#" className="block hover:text-primary">FAQs</NavLink>
-          <button className='text-white border px-3 py-1 rounded-2xl'>Log in</button>
+          <NavLink to="/signin"> <button className='text-white border px-3 py-1 rounded-2xl'> Log in </button></NavLink>
           <Button>Try for free</Button>
         </div>
       )}
