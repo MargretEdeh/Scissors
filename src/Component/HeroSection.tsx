@@ -12,11 +12,11 @@ export interface IHeroSectionProps {}
 export default function HeroSection(props: IHeroSectionProps) {
   return (
     <div className="mx-auto flex items-center justify-center">
-      <div className=" my-20 md:w-[70%] w-full px-5 font-semibold  items-center justify-center gap-5 flex flex-col">
-        <h1 className="px-2  md:px-0 text-3xl  md:text-5xl ">
+      <div className=" my-20  md:w-[70%] w-full px-5 font-semibold  items-center justify-center gap-5 flex flex-col">
+        <h1 className="px-2 text-center  md:px-0 text-3xl  md:text-5xl ">
           Optimize Your Online Experience with Our{" "}
         </h1>
-        <h1 className="px-2 text-4xl md:text-5xl">
+        <h1 className="px-2 text-center text-4xl md:text-5xl">
           {" "}
           Advanced <span className="text-primary"> URL Shortening</span>{" "}
           Solution
