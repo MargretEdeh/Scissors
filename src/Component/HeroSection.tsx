@@ -16,7 +16,7 @@ export default function HeroSection(props: IHeroSectionProps) {
         <h1 className="px-2 text-center  md:px-0 text-3xl  md:text-5xl ">
           Optimize Your Online Experience with Our{" "}
         </h1>
-        <h1 className="px-2 text-center text-4xl md:text-5xl">
+        <h1 className="px-2 mb-5 md:mb-0 text-center text-3xl md:text-5xl">
           {" "}
           Advanced <span className="text-primary"> URL Shortening</span>{" "}
           Solution
